@@ -1,5 +1,6 @@
 This project was created as a coding challenge for a job opportunity. 
-I started with this version than I decided I needed to take a different approach, but I ended up not having enough time to do it. There was a lot of information to manage and I made the mistake of not setting proper schemas and flux before starting it. The second version was with Apollo Client. Considering the time, I submitted this one but it has pretty basic functionalities and solutions.  
+It was built using React, collecting data from MovieDB API - a free API with movie information. 
+It is a simple structure and with it you can see lists of movies by genre and popularity. Besides that, it is possible to research for specifc movies. 
 
 ## Planning Phase
 
@@ -11,27 +12,15 @@ In the sequence, by looking at the design, I came up with the components and pag
 
 ### On State Management 
 
-I missjudged the complexity of state management in this project and I made a bad decision regarding accessing the API 'manually' in the necessary pages. 
-I did the project mostly in 8 hours, because I though that it was the deadline. After I learned I could do it in more time I decided to change the project from the beggining and create a proper schema and set the server with Apollo. However, I didn't have the time to finish that and I had submit this version. 
-When planning for the components, I planned on very dinamic state changes (you can get an idea by looking at the Figma Layout), but things got out of hand because I was struggling to understand the API structure everytime that I was running a function and it wasn't necessarily giving me back what I expected. 
+The first version I made was very messy and I was having a hard time managing the states. I thought then that I needed to make a more complex structure and add some type of query system. 
+However, as I took a step back and analysed my phase one of planning again I realized that I could simplify the structure by organizing it in a different way. I started from the beggining with a simpler approach and it worked better. 
 
-### What would I change 
+### Improvement Points
 
-Honestly I would start from the beggining and set the environment with Apollo. There is too much data to be managed in this application. 
-I would set the schema and take my time to understand the data structure in the API and how I was going to use it on my application. Because, for example, I lost a lot of time trying to make a list with the movies and failing to iterate the items because I couldn't acess the object right. In the end I had to go with a "manual version" because the data was all confused by then. 
-I would also create local queries to save locally the states of the films. I had a hard time to manage how to save the information on what movie was clicked, for example. That could be solved with a local query. 
-
-## What Works And Doesn't
-
-The CSS was done with styled-components and it should be looking OK for mobile, because I started with it. The Desktop version is not good because I didn't prepare a design for it and when I returned to think about it, there was no time. I did some media queries there, just so you see that I am aware on how to work with it. 
-The first page displays the 19 most popular movies. 
-When you click in the Menu, it displays a search field and also some links for different genres. 
-The search field doesn't work, because the data was chaotic and I had to organize it before I could apply a filter somewhere that would makes sense. 
-Similar lists as displayed for the popular movies are displayed for the other genres. 
-
+It is a very basic application. What I would do now would be to figure out how to display other pages of the results as the user scroll down, because now it only displays the first page results. 
+Also, there is probably a better way to make the genre list and direct it to a new page without creating a new page for each gener. I believe that a function inside the Router could perhaps be the way to write less code. 
 
 ### How to run in your machine
 The single page application was created with create-react-app and it should work when you download the repository in your machine and run the npm start. 
-
 
 

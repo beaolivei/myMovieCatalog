@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import movieDisplay from './movieDisplay'
 import MovieDisplay from './movieDisplay';
 import Title from './title';
-//This component makes a movie list based on the most popular movies. It is different from the MovieListGenre component because of the API url structure//
+//This component makes a list of films by genre, using the genre ID and name as props//
 const MovieDiv = styled.div`
     display: block;
     @media (min-width: 600px) {
@@ -22,18 +21,18 @@ const NavbarInput = styled.input `
         margin: 2% 0 0 20%;
     }
 `
-class MovieListMostPopular extends React.Component {
+class MovieListGenres extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            myPopularMovies:[],
+            myMovies:[],
             mySearchResults:[],
             isSearchOn: false,
             resultsRows:[]
         };
     }
     
-    myPopularList(movieObject) {
+    myList(movieObject) {
         var rows = []
         movieObject.forEach((movie)=> {
         rows.push(
@@ -48,9 +47,9 @@ class MovieListMostPopular extends React.Component {
     
 
     componentDidMount(){
-        fetch('https://api.themoviedb.org/3/discover/movie?api_key=2262518421d7f297bcccbb4ceb43d9d1&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false')
+        fetch('https://api.themoviedb.org/3/discover/movie?api_key=2262518421d7f297bcccbb4ceb43d9d1&sort_by=vote_average.desc&vote_count.gte=10&with_genres='+ this.props.genreID)
         .then(response => response.json())
-        .then (movies => this.setState({ myPopularMovies: movies.results}))
+        .then (movies => this.setState({ myMovies: movies.results}))
     }
     searchMovie(searchTerm) {
         fetch('https://api.themoviedb.org/3/search/movie?api_key=2262518421d7f297bcccbb4ceb43d9d1&query='+ searchTerm)
@@ -77,16 +76,13 @@ class MovieListMostPopular extends React.Component {
     render () {
         return (
             <div>
-            <NavbarInput onChange={this.handleChange.bind(this)} placeholder="Enter search term"/>  
-            {!this.state.isSearchOn ?
-                <Title text="Most Popular Movies"/> :
+                <NavbarInput onChange={this.handleChange.bind(this)} placeholder="Enter search term"/>   
+                {!this.state.isSearchOn ?
+                <Title text={"Your " + this.props.genre + " Movies"}/> :
                 <Title text= "Your Search Results"/>
-                } 
-            <MovieDiv>  
-     
-                {this.state.resultsRows.length == 0 ? this.myPopularList(this.state.myPopularMovies) : this.state.resultsRows} 
-
-
+                }  
+            <MovieDiv>     
+                {this.state.resultsRows.length == 0 ? this.myList(this.state.myMovies) : this.state.resultsRows} 
             </MovieDiv>
             </div>
         )
@@ -95,4 +91,4 @@ class MovieListMostPopular extends React.Component {
     
 }
 
-export default MovieListMostPopular
+export default MovieListGenres

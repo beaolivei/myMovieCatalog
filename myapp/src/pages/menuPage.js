@@ -2,12 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/navbar'
-import SearchInput from '../components/searchInput'
 import Title from '../components/title'
 
 const MenuPageHolderDiv = styled.div `
     background-color: #FCF902;
-    height: -webkit-fill-available;
+    height: 800px;
     @media (min-width: 600px) {
         height: 100%;
     }
@@ -26,46 +25,31 @@ const MyLink = styled(Link)`
     }
 `
 class MenuPage extends React.Component {
-    constructor(props){
-        super(props);
-        this.state={
-            whatIsTheGener: 'Popular',
-        }
-        this.handleClickDrama = this.handleClickDrama.bind(this);
-        this.handleClickComedy = this.handleClickComedy.bind(this);
-        this.handleClickMistery = this.handleClickMistery.bind(this);
-    }
-    handleClickDrama() {
-        this.setState({
-            whatIsTheGener: 'Drama'
-          });
-        }
-
-    handleClickComedy() {
-        this.setState({
-            whatIsTheGener : 'Comedy'
-        })
-    }
-    handleClickMistery() {
-        this.setState({
-            whatIsTheGener : 'Mistery'
-        })
-    }
-    render() {
-        console.log('whatIstheGener', this.state.whatIsTheGener)
+     render() {
         return(
             <MenuPageHolderDiv>
-                <Navbar genre={this.state.whatIsTheGener}/>
-                <SearchInput/>
+                <Navbar/>
                 <GenreLinksListDiv>
-                    <MyLink to='/myListDrama'onClick={this.handleClickDrama}>
-                        <Title text="Drama"/>
+                    <MyLink to='/'>
+                        <Title text="Popular"/>
                     </MyLink>
-                    <MyLink to='/myListComedy'onClick={this.handleClickComedy}>
+                    <MyLink to='/myListAction'>
+                        <Title text="Action"/>
+                    </MyLink>
+                    <MyLink to='/myListAdventure'>
+                        <Title text="Adventure"/>
+                    </MyLink>
+                    <MyLink to='/myListAnimation'>
+                        <Title text="Animation"/>
+                    </MyLink>
+                    <MyLink to='/myListComedy'>
                         <Title text="Comedy"/>
                     </MyLink>
-                    <MyLink to='/myListMistery' onClick={this.handleClickMistery}>
-                        <Title text="Mistery"/>
+                    <MyLink to='/myListDocumentary'>
+                        <Title text="Documentary"/>
+                    </MyLink>
+                    <MyLink to='/myListDrama'>
+                        <Title text="Drama"/>
                     </MyLink>
                 </GenreLinksListDiv>
             </MenuPageHolderDiv>

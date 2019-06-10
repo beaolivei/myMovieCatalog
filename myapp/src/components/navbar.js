@@ -4,27 +4,25 @@ import { Link } from 'react-router-dom'
 import HamburguerMenuLines from '../assets/img/hamburguerMenu.png'
 import Title from './title'
 
-const NavibarDiv = styled.div `
+const NavbarDiv = styled.div `
     display: flex; 
     background-color:#FCF902;
     @media (min-width: 600px) {
         height: 150px;
+        padding: 3% 0 0 0 ;
     }
 `
 const HamburguerMenuDiv = styled.div`
     background-color: #F6DA02;
     border-radius: 30px;
     padding: 4%;
+    margin: 0 3% 0 0 ;
     @media (min-width: 600px){
         background-color: transparent;
+        margin: -2% 30% 0 0 ;
     }
 `
-const TitleHolderDiv = styled.div `
-    margin: 5% 0 0 20%;
-    @media (min-width: 600px) {
-        margin: 0 35%;
-    }
-`
+
 
 class Navbar extends React.Component {
     constructor(props){
@@ -35,30 +33,20 @@ class Navbar extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick(e) {
-        // e.preventDefault();
         this.setState(state => ({
-          shouldMenuBeOpen: !state.shouldMenuBeOpen
+          shouldMenuBeOpen: !this.state.shouldMenuBeOpen
         }));
       }
     render() {
-        console.log('shouldMenuBeOpen', this.state.shouldMenuBeOpen)
-        console.log('genre', this.state.genre)
         return (
-            <NavibarDiv>
+            <NavbarDiv>
                 <HamburguerMenuDiv>
                     <Link onClick={this.handleClick} to={!this.state.shouldMenuBeOpen ? '/menu': '/'}>
                         <img src={HamburguerMenuLines} />
                     </Link>
                 </HamburguerMenuDiv>
-                {!this.state.shouldMenuBeOpen ? 
-                    <TitleHolderDiv>
-                        <Title text="Most Popular"/>
-                    </TitleHolderDiv> :
-                    <TitleHolderDiv>
-                        <Title text=""/>
-                    </TitleHolderDiv> 
-                         }
-            </NavibarDiv>
+                    <Title text="My Movie App"/>
+            </NavbarDiv>
         )
     }
 }
